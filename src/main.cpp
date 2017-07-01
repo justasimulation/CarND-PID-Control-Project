@@ -24,7 +24,7 @@ int main()
 
     //Run the simulation
     std::vector<double> p = {0.110385, 0.0751249, 0.000802641};
-    std::cout<<"Calculated error: "<<server.CalcError(p[0], p[1], p[2], 1e+30, 1e+30)<<std::endl;
+    std::cout<<"Calculated error: "<<server.CalcError(p[0], p[1], p[2], 1e+30, 1e+9)<<std::endl;
 
     // The commented code below is twiddle running and intermediate results
 
