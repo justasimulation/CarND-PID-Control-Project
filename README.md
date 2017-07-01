@@ -3,6 +3,50 @@ Self-Driving Car Engineer Nanodegree Program
 
 ---
 
+## Finding parameters
+
+I used twiddle algorithm as it was described in the lectures.
+
+## Effect of PID components
+
+In general the the effect is like expected. But it is more complicated than
+it was explained in the lectures, e.g. large P creates oscillations and increasing
+ D should help with it, but if D is too large it again creates oscillations. 
+ Also I component is almost cannot be detected visually in the simulator.
+   
+# Result
+
+The final solution is:
+```
+P = 0.110385
+D = 0.0751249
+I = 0.000802641
+```
+
+For ```1 / deg2rad(25)``` units.
+ 
+The speed is around 50 miles per hour. On a slow computer the car oscillates a bit at such a speed,
+so I break when cross track error is to high or when it changes sign frequently which may
+indicate oscillation.
+
+# Reflections
+
+* PID has its limitations
+    * It doesn't predict future state and acts only based on the past, when it might be
+    too late for the action
+     * It probably should use different coefficients for different speeds
+     * It doesn't consider physics of the car
+    
+* Lecture material was quite poor. It did not explain what were the limitations
+of PID and how to control for them. I think it would be better to put MPC before PID,
+ because it makes much easier to understand what is wrong with PID.
+
+
+---
+
+---
+
+
 ## Dependencies
 
 * cmake >= 3.5
@@ -34,59 +78,3 @@ There's an experimental patch for windows in this [PR](https://github.com/udacit
 2. Make a build directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
 4. Run it: `./pid`. 
-
-## Editor Settings
-
-We've purposefully kept editor configuration files out of this repo in order to
-keep it as simple and environment agnostic as possible. However, we recommend
-using the following settings:
-
-* indent using spaces
-* set tab width to 2 spaces (keeps the matrices in source code aligned)
-
-## Code Style
-
-Please (do your best to) stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html).
-
-## Project Instructions and Rubric
-
-Note: regardless of the changes you make, your project must be buildable using
-cmake and make!
-
-More information is only accessible by people who are already enrolled in Term 2
-of CarND. If you are enrolled, see [the project page](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/e8235395-22dd-4b87-88e0-d108c5e5bbf4/concepts/6a4d8d42-6a04-4aa6-b284-1697c0fd6562)
-for instructions and the project rubric.
-
-## Hints!
-
-* You don't have to follow this directory structure, but if you do, your work
-  will span all of the .cpp files here. Keep an eye out for TODOs.
-
-## Call for IDE Profiles Pull Requests
-
-Help your fellow students!
-
-We decided to create Makefiles with cmake to keep this project as platform
-agnostic as possible. Similarly, we omitted IDE profiles in order to we ensure
-that students don't feel pressured to use one IDE or another.
-
-However! I'd love to help people get up and running with their IDEs of choice.
-If you've created a profile for an IDE that you think other students would
-appreciate, we'd love to have you add the requisite profile files and
-instructions to ide_profiles/. For example if you wanted to add a VS Code
-profile, you'd add:
-
-* /ide_profiles/vscode/.vscode
-* /ide_profiles/vscode/README.md
-
-The README should explain what the profile does, how to take advantage of it,
-and how to install it.
-
-Frankly, I've never been involved in a project with multiple IDE profiles
-before. I believe the best way to handle this would be to keep them out of the
-repo root to avoid clutter. My expectation is that most profiles will include
-instructions to copy files to a new location to get picked up by the IDE, but
-that's just a guess.
-
-One last note here: regardless of the IDE used, every submitted project must
-still be compilable with cmake and make./

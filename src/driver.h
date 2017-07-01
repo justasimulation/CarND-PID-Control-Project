@@ -25,7 +25,7 @@ class Driver : public SingleClientServer
         //this is considered a change of side of the line and used to detect swinging.
         //Note that as we do not calc change per time, but per iteration this behaviour can change
         //on different hardware
-        const double kSwingTolerance = 0.035;
+        const double kSwingTolerance = 0.04;
         //Regular throttle
         const double kSpeed = 0.5;
         //Throttle value that is use for breaking
